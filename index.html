@@ -22,10 +22,12 @@
 
 <div class="simon-buttons" id="red"></div>
 <div class="simon-buttons" id="blue"></div>
+
 <br>
 <div class="simon-buttons" id="yellow"></div>
 <div class="simon-buttons" id="green"></div>
 
+<button id="start" type="button">start</button>
 <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -72,11 +74,29 @@
                 console.log("The random color is : " , nextColor)
                 simon.sequence.push(nextColor)
                 console.log("sequence ", simon.sequence)
+                var counter = 0
+                var id = setInterval(function () {
+                    $("#"+ simon.sequence[counter].toLowerCase()).fadeTo( 500, 0.5, function () {
+                        $(this).css("opacity", "1")
+
+                    } )
+                    counter++
+                    if (simon.sequence.length === counter) {
+                        clearInterval(id)
+                    }
+                },1500)
 
 
 
-            }
+            },
+
+
         };
+    $("#start").on("click", function () {
+        simon.sequence = []
+        simon.nextSequence()
+
+    })
 
     $(document).ready(function () {
         $("#red").click(function(){simon.sendColor(RED)});
