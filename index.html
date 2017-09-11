@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Simon</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body class="back">
+<h1 class="text-center">SIMPLE SIMON</h1>
+
+
+<!--<div class="text-center">-->
+    <!--<button id="one" class="buttons"></button>-->
+    <!--<button id="two" class="buttons"></button>-->
+<!--</div>-->
+
+<!--<div class="text-center">-->
+    <!--<button id="three" class="buttons"></button>-->
+    <!--<button id="four" class="buttons"></button>-->
+<!--</div>-->
+
+<div class="simon-buttons" id="red"></div>
+<div class="simon-buttons" id="blue"></div>
+<br>
+<div class="simon-buttons" id="yellow"></div>
+<div class="simon-buttons" id="green"></div>
+
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+<script>
+    'use strict;'
+// colors const cant be changed
+        const RED = "RED";
+        const BLUE  = "BLUE ";
+        const YELLOW = "YELLOW";
+        const GREEN = "GREEN";
+
+        var simon = {
+            sendColor: function(color) { /*listens for every input function to send color */
+                if (!simon.sequence.length) { /*checks if simon.length  is not equal to simon.length than start, there is no length */
+                    simon.nextSequence()
+                } else {
+                    if(color === simon.sequence[simon.step]){ /*if color equal step index of 0 is true */
+//                  go to next step
+                        if(simon.step === simon.sequence.length -1) {
+                            console.log("sequence complete");
+                            simon.step = 0;
+                            simon.nextSequence()
+
+                        }else {
+                            simon.step++;
+
+                        }
+                    } else {
+//                       Loose condition
+                        alert("WRONG")
+                        simon.sequence = [];
+                        simon.step = 0
+                    }
+                }
+                console.log("NEW COLOR " + color)
+            },
+            sequence: [],
+            colors: [RED, BLUE, YELLOW, GREEN], /* const colors go here */
+            step: 0, /*starts game at 0 index */
+            nextSequence: function () {
+                var nextColor = simon.colors[Math.floor(Math.random()* simon.colors.length)]
+                console.log("The random color is : " , nextColor)
+                simon.sequence.push(nextColor)
+                console.log("sequence ", simon.sequence)
+
+
+
+            }
+        };
+
+    $(document).ready(function () {
+        $("#red").click(function(){simon.sendColor(RED)});
+        $("#blue").click(function(){simon.sendColor(BLUE)});
+        $("#yellow").click(function(){simon.sendColor(YELLOW)});
+        $("#green").click(function(){simon.sendColor(GREEN)});
+
+
+    })
+// with index of 3
+//    0  1  2  3
+//    [r, ,g , y, b] 4
+/*
+1. red
+2. red, blue
+3. red, blue, yellow
+ */
+
+
+
+//        $("#one").css("background-color", "red")
+//        $("#two").css("background-color", "green")
+//        $("#three").css("background-color", "blue")
+//        $("#four").css("background-color", "orange")
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

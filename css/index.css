@@ -1,0 +1,24 @@
+
+.simon-buttons{
+
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    position: relative;
+    left: 205px;
+
+}
+#red{
+    background-color: red;
+}
+#blue{
+background-color: blue;
+}
+#yellow{
+    background-color: yellow;
+
+}
+#green{
+    background-color: green;
+
+}
